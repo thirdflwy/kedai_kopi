@@ -1,47 +1,19 @@
-Link GitHub Pages: https://USERNAME_GITHUB_KAMU.github.io/kedai_kopi/
+Link GitHub: https://github.com/thirdflwy/kedai_kopi.git
 
-# Kedai Kopi Senja — Website Statis (Minggu 2 & Minggu 3)
-
----
-
-## Jawaban Pertanyaan Coding 2 (Minggu 3: CSS, Layout, dan Responsive Design)
+# Kedai Kopi (Minggu 3: CSS, Layout, dan Responsive Design)
 
 ### a. Sebutkan satu bagian yang kamu susun dengan Flexbox dan satu bagian dengan Grid. Mengapa pilihan itu cocok untuk kedua bagian tersebut?
 
-1. **Bagian yang disusun dengan Flexbox:** Bagian **Header dan Navigasi** (`.header-inner` dan `.nav-list`).  
-   **Alasan:** Flexbox sangat cocok untuk tata letak **satu dimensi** (satu arah, baik satu baris maupun satu kolom). Pada header, kita hanya perlu mengatur susunan nama kedai dan deretan menu navigasi dalam satu sumbu: tersusun vertikal ke bawah (`flex-direction: column`) saat di layar ponsel, lalu berubah menjadi satu baris horizontal (`flex-direction: row`) dengan nama kedai di kiri dan menu navigasi di kanan (`justify-content: space-between`) saat layar melebar.
+**Bagian yang menggunakan Flexbox:** Bagian **Header dan Navigasi** (`.header-inner` dan `.nav-list`). Flexbox cocok digunakan pada bagian ini karena susunannya hanya perlu diatur dalam satu arah. Pada layar ponsel, nama kedai dan menu navigasi disusun secara vertikal menggunakan (`flex-direction: column`). Ketika layar lebih lebar, susunannya berubah menjadi horizontal menggunakan (`flex-direction: row`) dengan nama kedai di sebelah kiri dan menu navigasi di sebelah kanan. Properti (`justify-content: space-between`) digunakan agar keduanya memiliki jarak yang sesuai. Penggunaan Flexbox memudahkan pengaturan posisi elemen tanpa perlu mengatur setiap elemen secara terpisah.
 
-2. **Bagian yang disusun dengan Grid:** Bagian **Daftar Card Menu** (`.menu-grid`) di halaman `menu.html`.  
-   **Alasan:** CSS Grid dirancang untuk tata letak **dua dimensi** (mengatur baris dan kolom sekaligus). Dengan Grid, kita bisa dengan mudah membagi ukuran kolom yang sama rata menggunakan `grid-template-columns` secara responsif (*mobile-first*): 1 kolom (`1fr`) di ponsel, 2 kolom (`repeat(2, 1fr)`) mulai lebar `600px`, dan 3 kolom (`repeat(3, 1fr)`) mulai lebar `960px`, sambil menjaga tinggi setiap *card* pada baris yang sama tetap rapi dan sejajar.
+Sementara itu, daftar card menu(`.menu-grid`) di halaman `menu.html`.  menggunakan CSS Grid. Grid dipilih karena bagian ini membutuhkan pengaturan elemen dalam bentuk baris dan kolom sekaligus. Melalui properti `grid-template-columns` jumlah kolom dapat diubah menyesuaikan ukuran layar. Pada ponsel, card ditampilkan dalam satu kolom (`1fr`), kemudian menjadi dua kolom (`repeat(2, 1fr)`) saat lebar layar `600px`, dan tiga kolom (`repeat(3, 1fr)`) pada lebar `960px`. Pengaturan tersebut membuat tampilan menu lebih terstruktur dan ukuran card pada setiap baris tetap sejajar, sehingga layout terlihat lebih rapi ketika dibuka pada ukuran layar yang berbeda.
 
 ---
 
 ### b. Ceritakan satu aturan CSS yang awalnya tidak berlaku. Apa yang kamu lihat di panel Styles, dan bagaimana kamu memperbaikinya?
 
-Saat pertama kali menata tautan navigasi di dalam header, saya mencoba mengubah warna teks link menjadi krem (`#FBF9F5`) dengan menuliskan aturan warna pada elemen `<li>` atau `.nav-list` saja, serta sempat menulis aturan umum `a { color: #3E2723; }` di bagian bawah file CSS. Akibatnya, warna teks link di navigasi tidak berubah seperti yang diinginkan.
+Saat mengatur warna teks pada tautan navigasi di header, saya sempat mengalami masalah ketika warna link tidak berubah menjadi krem (`#FBF9F5`) sesuai keinginan. Awalnya, saya mencoba memberikan properti color pada elemen `<li>` atau `.nav-list`, tetapi warna teks pada link tetap tidak berubah. Saya juga sempat menambahkan aturan umum `a { color: #3E2723; }` di bagian bawah file CSS, yang menyebabkan warna link masih mengikuti aturan tersebut.
 
-**Apa yang terlihat di panel Styles (Developer Tools):**  
-Ketika saya klik kanan pada teks link navigasi lalu memilih **Inspect**, di tab **Elements -> panel Styles** terlihat bahwa properti `color` yang saya pasang pada `.nav-list` tidak menang pada elemen `<a>` karena elemen `<a>` memiliki aturan warna sendiri (baik bawaan *user agent stylesheet* browser maupun selector `a` yang ditulis setelahnya), sehingga aturan warna yang kalah tampak **dicoret (*strikethrough*)** di panel Styles.
+Untuk mengetahui penyebabnya, saya membuka Developer Tools dengan klik kanan pada teks navigasi, lalu memilih Inspect. Pada tab Elements, tepatnya di panel Styles, terlihat bahwa aturan `color` yang saya terapkan pada `.nav-list` tidak digunakan oleh elemen `<a>` karena elemen tersebut memiliki aturan warna tersendiri. Selain itu, terdapat aturan `color` dari selector `a` yang posisinya lebih bawah pada CSS. Aturan yang tidak digunakan terlihat dicoret (strikethrough) pada panel Styles, sehingga saya dapat mengetahui bahwa deklarasi tersebut kalah dalam penerapan CSS.
 
-**Cara memperbaikinya:**  
-Saya memperbaikinya dengan membuat *descendant selector* yang lebih spesifik langsung ke elemen tautannya, yaitu `.nav-list a { color: #FBF9F5; }`. Karena `.nav-list a` memiliki *specificity* lebih tinggi (gabungan 1 class dan 1 elemen) dan menargetkan elemen `<a>` secara langsung, aturan tersebut menang di panel Styles dan warna link navigasi berhasil berubah.
-
----
-
-## Jawaban Pertanyaan Coding 1 (Minggu 2: HTML Statis)
-
-### a. Apa yang muncul di address bar setelah form dikirim, dan mengapa data form tampil di sana? Hubungkan dengan materi method HTTP di Minggu 1.
-
-Setelah form pada `pesan.html` diisi lengkap lalu tombol **Kirim** ditekan, URL di *address bar* berubah dengan tambahan tanda tanya (`?`) yang diikuti oleh pasangan `name=value` dari setiap input form yang dipisahkan dengan tanda `&` (*query string*). Contohnya:
-
-```text
-pesan.html?nama=Budi&whatsapp=08123456789&menu=kopi_susu_gula_aren&jumlah=2&cara_ambil=ambil_di_tempat&catatan=es+sedikit
-```
-
-Hal ini terjadi karena elemen `<form>` menggunakan atribut `method="get"`. Berdasarkan materi **method HTTP di Minggu 1**, metode **HTTP GET** mengirimkan data parameter langsung melalui URL (*query string*), bukan di dalam *body* pesan HTTP, sehingga seluruh isian form tampak di *address bar*.
-
-### b. Pilih satu bagian halamanmu yang memakai element semantic. Mengapa kamu memilih element itu dan bukan `<div>`?
-
-Salah satu bagian yang memakai elemen semantik adalah bagian navigasi di dalam `<header>`, yaitu menggunakan elemen **`<nav>`** (serta `<header>`, `<main>`, `<section>`, `<article>`, dan `<footer>`).
-
-Memilih `<nav>` dibanding `<div>` memberikan makna struktur yang jelas bagi browser, mempermudah alat bantu pembaca layar (*screen reader*) untuk mengenali menu navigasi utama (*accessibility*), dan membuat kode HTML jauh lebih mudah dibaca serta dipelihara dibandingkan deretan `<div>` tanpa makna.
+Masalah tersebut kemudian saya perbaiki dengan menggunakan descendant selector `.nav-list a { color: #FBF9F5; }` agar warna diterapkan langsung pada elemen tautan di dalam navigasi. Selector ini memiliki tingkat spesifisitas lebih tinggi dibandingkan selector `a` biasa karena menggabungkan class dan elemen. Setelah aturan tersebut diterapkan, warna teks link navigasi berubah menjadi krem sesuai yang diharapkan.
