@@ -1,0 +1,312 @@
+:root {
+    --bg-cream: #FBF9F5;
+    --surface-white: #FFFFFF;
+    --coffee-dark: #2C1810;
+    --coffee-accent: #B85D19;
+    --text-primary: #2B1B12;
+    --text-muted: #6E5A4F;
+    --border-soft: #E5DACD;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Membatasi lebar konten max-width: 960px dan meletakkannya di tengah layar */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Pastikan gambar responsif agar tidak menimbulkan scroll ke samping di layar 375px */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGASI DENGAN FLEXBOX - MOBILE FIRST (Tugas 3)
+   - Di layar ponsel (default): nama kedai dan link navigasi tersusun ke bawah
+   - Di layar lebar (>= 600px): nama kedai di kiri, link navigasi berjajar di kanan
+   ========================================================================== */
+
+.site-header {
+    background-color: var(--coffee-dark);
+    color: var(--bg-cream);
+    padding: 1rem 0;
+}
+
+.header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.nav-list a {
+    display: block;
+    color: var(--bg-cream);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Efek :hover pada link navigasi */
+.nav-list a:hover,
+.nav-list a:focus {
+    background-color: var(--coffee-accent);
+    color: var(--surface-white);
+}
+
+/* ==========================================================================
+   3. KONTEN UTAMA & BERANDA
+   ========================================================================== */
+
+main.container {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+.section-block {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--coffee-accent);
+    padding-bottom: 0.4rem;
+}
+
+h3 {
+    color: var(--text-primary);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.hours-list {
+    padding-left: 1.25rem;
+}
+
+.hours-list li {
+    margin-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   4. DAFTAR MENU DENGAN CSS GRID - MOBILE FIRST (Tugas 4)
+   - Ponsel (default): 1 kolom
+   - Mulai lebar 600px: 2 kolom
+   - Mulai lebar 960px: 3 kolom
+   ========================================================================== */
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.menu-card {
+    background-color: var(--surface-white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+
+.menu-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+}
+
+.menu-desc {
+    margin: 0 0 1rem 0;
+    color: var(--text-muted);
+}
+
+.menu-price {
+    margin: 0;
+    font-weight: 700;
+    color: var(--coffee-dark);
+    font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   5. FORM PEMESANAN (Tugas 5)
+   - Label berada di atas field
+   - Field selebar kontainer (width: 100%)
+   - Jarak yang cukup antarfield
+   - Gaya tombol Kirim dan tampilan :focus pada field aktif
+   ========================================================================== */
+
+.order-form {
+    background-color: var(--surface-white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-cream);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 6px;
+}
+
+/* Tampilan :focus pada field yang sedang aktif */
+.form-control:focus {
+    outline: none;
+    border-color: var(--coffee-dark);
+    box-shadow: 0 0 0 3px rgba(44, 24, 16, 0.2);
+}
+
+.radio-fieldset {
+    border: 1.5px solid var(--border-soft);
+    border-radius: 6px;
+    padding: 0.75rem 1rem 1rem 1rem;
+    margin: 0 0 1.25rem 0;
+}
+
+.radio-fieldset legend {
+    font-weight: 600;
+    padding: 0 0.4rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.radio-option input[type="radio"] {
+    accent-color: var(--coffee-dark);
+}
+
+.radio-option input[type="radio"]:focus {
+    outline: 2px solid var(--coffee-dark);
+    outline-offset: 2px;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--surface-white);
+    background-color: var(--coffee-dark);
+    border: 2px solid var(--coffee-dark);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+    background-color: var(--coffee-accent);
+    border-color: var(--coffee-accent);
+}
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+
+.site-footer {
+    background-color: var(--coffee-dark);
+    color: var(--bg-cream);
+    padding: 1.25rem 0;
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0.35rem 0;
+}
+
+/* ==========================================================================
+   7. MEDIA QUERIES - MOBILE FIRST (Tugas 3 & 4)
+   ========================================================================== */
+
+/* Layar Tablet / Lebar mulai 600px */
+@media (min-width: 600px) {
+    /* Header: nama kedai di kiri, navigasi berjajar di kanan */
+    .header-inner {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        width: auto;
+        gap: 0.75rem;
+    }
+
+    /* Card menu: 2 kolom mulai lebar 600px */
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-submit {
+        width: auto;
+    }
+}
+
+/* Layar Desktop mulai 960px */
+@media (min-width: 960px) {
+    /* Card menu: 3 kolom mulai lebar 960px */
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
